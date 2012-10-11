@@ -1,0 +1,45 @@
+﻿<%@ Master Language="C#" Inherits="System.Web.Mvc.ViewMasterPage" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="Head1" runat="server">
+    <link href="/Content/Style/style.css" rel="stylesheet" type="text/css" />
+    <link href="/Content/jquery-ui-1.8.16.custom.css" rel="stylesheet" type="text/css" />
+
+    <script type="text/javascript" src="/scripts/jquery-1.4.4.min.js"></script>
+    <script type="text/javascript" src="/scripts/jquery-ui.min.js"></script>
+    <asp:ContentPlaceHolder ID="ScriptHolder" runat="server"></asp:ContentPlaceHolder>
+</head>
+<body>
+   <div class="nav">
+   <div class="logo"></div>
+	<span>你好<%=CurrentUserModel.Current.UserName %></span>
+    <ul>
+        <%if (CurrentUserModel.Current.Role == 0)
+          { %>
+    	<li <%if (Request.Path.ToLower().IndexOf("/home")>=0){ %>class="current"<%} %>><a href="/Home/">首页</a></li>
+    	<li <%if (Request.Path.ToLower().IndexOf("/report/dailyamountreport")>=0){ %>class="current"<%} %>><a href="/report/dailyamountreport">日收费录入</a></li>
+    	<li <%if (Request.Path.ToLower().IndexOf("/report/spiltbill")>=0){ %>class="current"<%} %>><a href="/report/spiltbill">已拆账录入</a></li>
+    	<li <%if (Request.Path.ToLower().IndexOf("/report/dailycardreport")>=0){ %>class="current"<%} %>><a href="/report/dailycardreport">日发卡录入</a></li>
+    	<li <%if (Request.Path.ToLower().IndexOf("/report/trafficreport")>=0){ %>class="current"<%} %>><a href="/report/trafficreport">车流量录入</a></li>
+    	<li <%if (Request.Path.ToLower().IndexOf("/report/truck5report")>=0){ %>class="current"<%} %>><a href="/report/Truck5Report">5轴车录入</a></li>
+    	<li <%if (Request.Path.ToLower().IndexOf("/report/truck6report")>=0){ %>class="current"<%} %>><a href="/report/Truck6Report">6轴车录入</a></li>
+    	<li <%if (Request.Path.ToLower().IndexOf("/report/shortover")>=0){ %>class="current"<%} %>><a href="/report/shortover">长短款录入</a></li>
+        <%}
+          else
+          { %>
+    	<li <%if (Request.Path.ToLower().IndexOf("/station")>=0){ %>class="current"<%} %>><a href="/station/">站设置</a>-<a href="/station/add">添加</a></li>
+    	<li <%if (Request.Path.ToLower().IndexOf("/user")>=0){ %>class="current"<%} %>><a href="/user/">用户管理</a>-<a href="/user/add">添加</a></li>
+        <%} %>
+        <li><a href="/account/logoff">退出登录</a></li>
+    </ul>
+</div>
+
+<div class="main">
+        <asp:ContentPlaceHolder ID="MainContent" runat="server">
+        </asp:ContentPlaceHolder>
+    </div>
+
+</body>
+</html>
